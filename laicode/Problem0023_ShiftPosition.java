@@ -1,6 +1,14 @@
 package allProblems;
 import java.util.*;
 
+/*Given an integer array A, A is sorted in ascending order first then shifted by an arbitrary number of positions, 
+For Example, A = {3, 4, 5, 1, 2} (shifted left by 2 positions). Find the index of the smallest number.*/
+
+//method: binary search
+//data structure: array
+//time: O(logn)
+//space: O(1)
+
 public class Problem0023_ShiftPosition {
 	public static int shiftPosition(int[] array) {
 		if (array == null || array.length == 0) {
