@@ -7,7 +7,7 @@ Find the total number of occurrences of T in A.*/
 
 //method: binary search
 //data structure: array
-//time: worst O(n)
+//time: O(log n)
 //space: O(1)
 
 public class Problem0024_TotalOccurrence {
@@ -15,35 +15,59 @@ public class Problem0024_TotalOccurrence {
 		if (array == null || array.length == 0) {
 			return 0;
 		}
-		if (array.length == 1 && array[0] == target) {
-			return 1;
+		// 1. find first occurrence of the target in the array using BS
+		// 2. find last occurrence of the target in the array using BS
+		// 3. result = last index - first index + 1 if target is found
+		// 4. result = 0 if target is not found
+		int first = firstOccurrence(array, target);
+		int last = lastOccurrence(array, target);
+		if (first == -1 || last == -1) {
+			return 0;
+		} else {
+			return last - first + 1;
 		}
-		int left = 0;
-		int right = array.length - 1;
-		int mid = left + (right - left) / 2;
-		int count = 0;
-		while (left < right - 1) {
-			if (array[mid] == target) {
-				count += 1;
-				break;
-			} else if (array[mid] > target) {
-				right = mid;
+	}
+	
+	private static int firstOccurrence(int[] array, int target) {
+		int n = array.length;
+		int l = 0;
+		int r = n - 1;
+		while (l < r - 1) {
+			int m = l + (r - l) / 2;
+			if (target <= array[m]) {
+				r = m;
 			} else {
-				left = mid;
+				l = m;
 			}
-			mid = left + (right - left) / 2;
 		}
-		left = mid - 1;
-		right = mid + 1;
-		while (left >= 0 && array[left] == target) {
-			count += 1;
-			left -= 1;
+		if (target == array[l]) {
+			return l;
 		}
-		while (right <= array.length - 1 && array[right] == target) {
-			count += 1;
-			right += 1;
+		if (target == array[r]) {
+			return r;
 		}
-		return count;
+		return -1;
+	}
+	
+	private static int lastOccurrence(int[] array, int target) {
+		int n = array.length;
+		int l = 0;
+		int r = n - 1;
+		while (l < r - 1) {
+			int m = l + (r - l) / 2;
+			if (target >= array[m]) {
+				l = m;
+			} else {
+				r = m;
+			}
+		}
+		if (target == array[r]) {
+			return r;
+		}
+		if (target == array[l]) {
+			return l;
+		}
+		return -1;
 	}
 	
 	public static void main(String[] args) {
