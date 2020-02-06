@@ -7,7 +7,7 @@ Find the total number of occurrences of T in A.*/
 
 //method: binary search
 //data structure: array
-//time: O(logn)
+//time: worst O(n)
 //space: O(1)
 
 public class Problem0024_TotalOccurrence {
