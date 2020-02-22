@@ -2,7 +2,7 @@ package problems0001to0100;
 
 import java.util.*;
 
-// 1900 - constructive algorithms, dp, greedy, sortings, strings
+// 1900 - constructive algorithms, dp, greedy, sortings, strings - accepted
 
 public class Problem0005C_LongestRegularBracketSequence {
 	public static void main(String[] args) {
