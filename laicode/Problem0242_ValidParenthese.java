@@ -10,7 +10,7 @@ The brackets must close in the correct order.*/
 //method: string
 //data structure: stack
 //time: O(n)
-//space: O(1)
+//space: O(n)
 
 public class Problem0242_ValidParenthese {
 	public static boolean isValid(String input) {
