@@ -32,5 +32,4 @@ public class Problem0005C_LongestRegularBracketSequence {
 		}
 		System.out.println(max + " " + (max == 0 ? 1 : countMax));
 	}
-	
 }

@@ -2,7 +2,7 @@ package problems0001to0100;
 
 import java.util.*;
 
-// 1300 - brute force; geometry
+// 1300 - brute force; geometry - accepted
 
 public class Problem0006A_Triangle {
 	public static void main(String[] args) {

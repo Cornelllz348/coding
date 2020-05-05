@@ -18,7 +18,6 @@ public class Problem0006B_PresidentsOffice {
 				M[i][j] = str.charAt(j);
 			}
 		}
-		
 		for (int i = 0; i < n; i++) {
 			for (int j = 0; j < m; j++) {
 				if (M[i][j] == c) {
