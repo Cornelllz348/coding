@@ -186,3 +186,239 @@ def findMedianSortedArrays(nums1, nums2):
 
 -----
 
+# 5: Longest Palindromic Substring **
+
+# Given a string s, return the longest palindromic substring in s
+
+def longestPalindrome(s):
+    """
+    :type s: str
+    :rtype: str
+    """
+    p1 = p2 = 0
+    for i in range(len(s)):
+        l1 = expandAroundCenter(s, i, i)         # when len(s) is odd
+        l2 = expandAroundCenter(s, i, i+1)       # when len(s) is even
+        l = max(l1, l2)
+        if (l > p2 - p1):
+            p1 = i - (l - 1) // 2
+            p2 = i + l // 2
+    return s[p1:p2+1]
+
+# given a string s and two pointers, expand around center and return the length of the palindrome substring
+def expandAroundCenter(s, left, right):
+    while left >= 0 and right < len(s) and s[left] == s[right]:
+        left = left - 1
+        right = right + 1
+    return right - left - 1
+
+# Method: String
+# Time: O(n^2)
+# Space: O(1)
+
+-----
+
+# 6. ZigZag Conversion **
+
+# The string "PAYPALISHIRING" is written in a zigzag pattern on a given number of rows like this:
+# P   A   H   N
+# A P L S I I G
+# Y   I   R
+# Output: "PAHNAPLSIIGYIR"
+
+def zigZagConvert(s, numRows):
+    """
+    :type s: str
+    :type numRows: int
+    :rtype: str
+    """
+    if numRows == 1:
+        return s
+    lists = ['' for i in range(numRows)]
+    row = 0
+    down = False
+    # iterate through s and record row number
+    # if row = 0 or row = numRows - 1, then change direction
+    for i in range(len(s)):
+        lists[row] += s[i]
+        if row == 0 or row == numRows - 1:
+            down = not down
+        if down:
+            row = row + 1
+        else: row = row - 1
+    return ''.join(lists)
+
+# Method: Math
+# Time: O(n)
+# Space: O(n)
+
+-----
+
+# 7: Reverse Integer *
+
+# Given a 32-bit signed integer, reverse digits of an integer
+
+def reverse(x):
+    """
+    :type x: int
+    :rtype: int
+    """
+    result = 0
+    sign = 1
+    if x < 0:
+        x = -x
+        sign = -1
+    while x != 0:
+        x, b = divmod(x, 10)
+        result = result * 10 + b
+    if result < - 2**31 or result > 2**31 - 1:
+        return 0
+    else:
+        return result * sign
+
+# Method: Math
+# Time: O(n)
+# Space: O(1)
+
+-----
+
+# 8. String to Integer (atoi) **
+
+"""
+Implement atoi which converts a string to an integer.
+The function first discards as many whitespace characters as necessary until the first non-whitespace character is found. 
+Then, starting from this character takes an optional initial plus or minus sign followed by as many numerical digits 
+as possible, and interprets them as a numerical value.
+The string can contain additional characters after those that form the integral number, 
+which are ignored and have no effect on the behavior of this function.
+If the first sequence of non-whitespace characters in str is not a valid integral number, 
+or if no such sequence exists because either str is empty or it contains only whitespace characters, 
+no conversion is performed.
+If no valid conversion could be performed, a zero value is returned.
+"""
+
+def myAtoi(s):
+    """
+    :type s: str
+    :rtype: int
+    """
+    s = s.strip()
+    if s == "":
+        return 0
+
+    sign = 1
+
+    if s[0] in {'-', '+'}:
+        sign = -1 if s[0] == '-' else 1
+        s = s[1:]
+
+    result = 0
+    flag = False
+
+    for i in range(len(s)):
+        if (flag == False and not s[i].isnumeric()):
+            return 0
+        if s[i].isnumeric():
+            result = result * 10 + int(s[i])
+            flag = True
+        if (flag == True and not s[i].isnumeric()):
+            break
+
+    if sign == 1:
+        return min(result, 2**31 - 1)
+    else:
+        return max(sign * result, -2**31)
+
+-----
+
+# 9. Palindrome Number *
+
+# Determine whether an integer is a palindrome. An integer is a palindrome when it reads the same backward as forward.
+
+def isPalindrome(x):
+    """
+    :type x: int
+    :rtype: bool
+    """
+    if x < 0:
+        return False
+    y = 0
+    s = x
+    while s > 0:
+        s, r = divmod(s, 10)
+        y = y * 10 + r
+    if y == x:
+        return True
+    else:
+        return False
+        
+-----
+
+# 10. Regular Expression Matching ***
+
+# Given an input string (s) and a pattern (p), implement regular expression matching with support for '.' and '*' where: 
+
+# '.' Matches any single character.
+# '*' Matches zero or more of the preceding element.
+# The matching should cover the entire input string (not partial).
+
+def regExpMatch(text, pattern):
+    """
+    :type s: str
+    :type p: str
+    :rtype: bool
+    """
+    s = ' ' + s
+    p = ' ' + p
+    dp = [[False] * (len(p) + 1) for _ in range(len(s) + 1)]
+    dp[0][0] = True
+
+# DP rules:
+# T[i][j] where i is ith index in text and j is jth index in pattern
+# If text[i] == pattern[j] or pattern[j] == '.':
+    # T[i][j] = T[i-1][j-1]
+# If pattern[j] = '*':
+    # 1). T[i][j] = T[i][j-2] if zero occurrence
+    # 2). T[i][j] if text[i] == pattern[j-1] or pattern[j-1] = '.'
+    
+    # takes care of the first row where pattern might be a*, a*b*, a*b*c*, etc.
+    for i in range(1, len(p)):
+        if p[i] == '*':
+            dp[0][i] = dp[0][i-2]
+
+    for i in range(1, len(s)):
+        for j in range(1, len(p)):
+            if p[j] in {s[i], '.'}:
+                dp[i][j] = dp[i-1][j-1]
+            elif p[j] == '*':
+                dp[i][j] = dp[i][j-2]
+                if p[j-1] in {s[i], '.'}:
+                    dp[i][j] = dp[i][j] or dp[i-1][j]
+
+    return dp[len(s)-1][len(p)-1]
+
+"""
+dp grid:
+
+        0    1    2    3    4    5    6
+             x    a    *    b    .    c
+
+0       T    F    F    F    F    F    F
+
+1   x   F    T    F    T    F    F    F
+
+2   a   F    F    T    T    F    F    F
+
+3   a   F    F    F    T    F    F    F
+
+4   b   F    F    F    F    T    F    F
+
+5   y   F    F    F    F    F    T    F
+
+6   c   F    F    F    F    F    F    T  
+
+"""
+
+# Method: Dynamic Programming
+# Time: O(mn) where m is length of text and n is length of pattern
+# Space: O(mn)
