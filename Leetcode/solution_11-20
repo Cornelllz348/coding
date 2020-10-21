@@ -153,3 +153,44 @@ def threeSum(nums):
 # Method: Two pointers
 # Time: O(n^2)
 # Space: O(n) from sorting
+
+-----
+
+# 16. 3Sum Closest **
+
+# Given an array nums of n integers and an integer target, 
+# find three integers in nums such that the sum is closest to target. Return the sum of the three integers. 
+# You may assume that each input would have exactly one solution.
+
+def threeSumClosest(nums, target):
+    """
+    :type nums: List[int]
+    :type target: int
+    :rtype: int
+    """
+    result = 0
+    nums.sort()
+    diff = float('inf')
+    for i in range(len(nums)):
+        j = i + 1
+        k = len(nums) - 1
+        while j < k:
+            s = nums[i] + nums[j] + nums[k]
+            # update diff if s becomes closer to target in either direction
+            if abs(target - s) < abs(diff):
+                diff = target - s
+            if s < target:
+                j = j + 1
+            else:
+                k = k - 1
+        if diff == 0:
+            break
+    return target - diff
+
+# Method: Two pointers
+# Time: O(n^2)
+# Space: O(n) from sorting
+
+-----
+
+
