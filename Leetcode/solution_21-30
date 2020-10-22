@@ -1,1 +1,38 @@
+# 21. Merge Two Sorted Lists *
+
+# Merge two sorted linked lists and return it as a new sorted list. 
+# The new list should be made by splicing together the nodes of the first two lists.
+
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+def mergeTwoLists(l1, l2):
+    """
+    :type l1: ListNode
+    :type l2: ListNode
+    :rtype: ListNode
+    """
+    p1 = l1
+    p2 = l2
+    l3 = ListNode(0)
+    dummy = l3
+    while p1 and p2:
+        # move whichever is smaller
+        if p1.val > p2.val:
+            dummy.next = p2
+            p2 = p2.next
+        else:
+            dummy.next = p1
+            p1 = p1.next
+        dummy = dummy.next
+    dummy.next = p1 if p1 is not None else p2
+    return l3.next
+
+# Method: Linked List
+# Time: O(L1 + L2) where L1 and L2 are the length of linked list 1 and 2
+# Space: O(L1 + L2)
+
+-----
 
