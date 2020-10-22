@@ -341,3 +341,32 @@ def removeNthFromEnd(head, n):
 
 -----
 
+# 20. Valid Parentheses *
+
+# Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
+# An input string is valid if:
+# Open brackets must be closed by the same type of brackets.
+# Open brackets must be closed in the correct order.
+
+def isValid(s):
+    stack = []
+    mapping = {")": "(", "]": "[", "}": "{"}
+    for c in s:
+        # if it is a closing bracket
+        if c in mapping:
+            # if the stack is not empty then pop the top element of the stack
+            # if the stack is empty then assign a dummy char
+            top = stack.pop() if stack else '#'
+            # return False if the top element is not the corresponding open bracket of c,
+            # or c is a closing bracket when the stack is empty
+            if mapping[c] != top:
+                return False
+        # if it is an opening bracket push c into the stack
+        else:
+            stack.append(c)
+    # return True is the stack is empty at the end
+    return not stack
+
+# Method: Stack
+# Time: O(n)
+# Space:O(n)
