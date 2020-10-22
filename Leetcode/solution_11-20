@@ -242,3 +242,64 @@ DFS call stack:
 # Space: O(n)
 
 -----
+
+# 18. 4Sum **
+
+# Given an array nums of n integers and an integer target, are there elements a, b, c, 
+# and d in nums such that a + b + c + d = target? Find all unique quadruplets in the array which gives the sum of target.
+# Notice that the solution set must not contain duplicate quadruplets.
+
+def fourSum(nums, target):
+    """
+    :type nums: List[int]
+    :type target: int
+    :rtype: List[List[int]]
+    """
+
+    def kSum(nums, target, k):
+        res = []
+        # if nums is empty, or if k * the largest number in nums is smallest than target,
+        # or if k * the smallest numer in nums is larger than target, than return empty
+        # as it is imposssible to find k numbers that sum to target
+        if len(nums) == 0 or nums[0] * k > target or target > nums[-1] * k:
+            return res
+        # at base case of recursion (i.e. k == 2), do twoSum
+        if k == 2:
+            return twoSum(nums, target)
+        # recursion
+        for i in range(len(nums)):
+            # deduplicate condition
+            if i == 0 or nums[i - 1] != nums[i]:
+                # Recursion down from kSum to 2Sum. Example:
+                # [-2, -1, 0, 0, 1, 2]  target = 0, k = 4
+                #  i   <--  3Sum  -->   target = 2, k = 3
+                #  i  i+1  <- 2Sum ->   target = 3, k = 2 --> append([-2, -1, 1, 2])
+                for set in kSum(nums[i + 1:], target - nums[i], k - 1):
+                    res.append([nums[i]] + set)
+        return res
+
+    def twoSum(nums, target):
+        # twoSum on sorted array using two pointers
+        res = []
+        i, j = 0, len(nums) - 1
+        while i < j:
+            s = nums[i] + nums[j]
+            # if s is smaller than target, or duplicate, than move left pointer
+            if s < target or (i > 0 and nums[i] == nums[i - 1]):
+                i = i + 1
+            # if s is larger than target, or duplicate, than move right pointer
+            elif s > target or (j < 0 and nums[j] == nums[j + 1]):
+                j = j - 1
+            # if s is equal to target, append and move both pointers
+            else:
+                res.append([nums[i], nums[j]])
+                i = i + 1
+                j = j - 1
+        return res
+
+    nums.sort()
+    return kSum(nums, target, 4)
+
+# Method: Two pointers
+# Time: O(n^(k-1)) for kSum
+# Space: O(n)
