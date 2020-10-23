@@ -36,3 +36,42 @@ def mergeTwoLists(l1, l2):
 
 -----
 
+# 22. Generate Parentheses **
+
+# Given n pairs of parentheses, write a function to generate all combinations of well-formed parentheses.
+
+# Input: n = 3
+# Output: ["((()))","(()())","(())()","()(())","()()()"]
+
+def generateParentheses(n):
+    ans = []
+    def backtrack(S = "", left = 0, right = 0):
+        # Let S is string where number of "(" is >= number of ")"
+        # Let left track the number of "(" and right track the number of ")"
+        # if len(S) is 2*n, stop running as all parentheses have been used up
+        if len(S) == 2*n:
+            ans.append(S)
+            return
+        # 1. add "(" if there is still "(" left
+        if left < n:
+            backtrack(S + "(", left+1, right)
+        # 2. add ")" only if the number of "(" is greater than the number of ")"
+        if right < left:
+            backtrack(S + ")", left, right+1)
+
+    backtrack("", 0, 0)
+    return ans
+
+# Method: String, Backtracking
+# Time: O(1/(n+1) * C(n, 2n)) - the n-th Catalan number
+# Space: O(1/(n+1) * C(n, 2n))
+
+"""
+n-th Catalan number:
+* given a list of 1 and -1, such that the sum of any leading sub-array is non-negative
+* step 1: without considering order of 1 and -1, we have a total of C(n, 2n) combinations
+* step 2: this includes C(n-1, 2n) ILLEGAL orders; each ILLEGAL order corresponds to an order of n+1
+          1's and n-1 -1's
+* step 3: C(n, 2n) - C(n-1, 2n) = 1/(n+1) * C(n,2n)
+
+"""
