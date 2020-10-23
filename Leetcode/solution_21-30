@@ -75,3 +75,68 @@ n-th Catalan number:
 * step 3: C(n, 2n) - C(n-1, 2n) = 1/(n+1) * C(n,2n)
 
 """
+
+-----
+
+# 26. Remove Duplicates from Sorted Array *
+
+# Given a sorted array nums, remove the duplicates in-place such that each element appears only once
+# and returns the new length.
+# Do not allocate extra space for another array, you must do this by modifying the input array in-place 
+# with O(1) extra memory.
+
+def removeDuplicates(nums):
+    """
+    :type nums: List[int]
+    :rtype: int
+    """
+    x = 1
+    for i in range(len(nums)-1):
+        if(nums[i] != nums[i+1]):
+            nums[x] = nums[i+1]
+            x = x + 1
+    return x
+    
+-----
+
+# 27. Remove Element *
+
+# Given an array nums and a value val, remove all instances of that value in-place and return the new length.
+# Do not allocate extra space for another array, you must do this by modifying the input array in-place
+# with O(1) extra memory.
+# The order of elements can be changed. It doesn't matter what you leave beyond the new length.
+
+def removeElement(nums, val):
+    i = 0
+    for j in range(len(nums)):
+        if nums[j] != val:
+            nums[i] = nums[j]
+            i = i + 1
+    return i
+    
+-----
+
+# 28. Implement strStr() *
+
+# Return the index of the first occurrence of needle in haystack, or -1 if needle is not part of haystack.
+# What should we return when needle is an empty string? This is a great question to ask during an interview.
+# For the purpose of this problem, we will return 0 when needle is an empty string. 
+# This is consistent to C's strstr() and Java's indexOf().
+
+def strStr(haystack, needle):
+    """
+    :type haystack: str
+    :type needle: str
+    :rtype: int
+    """
+    if needle == "":
+        return 0
+    if len(needle) > len(haystack):
+        return -1
+    for i in range(len(haystack) - len(needle) + 1):
+        if haystack[i:i+len(needle)] == needle:
+            return i
+    return -1
+    
+-----
+
