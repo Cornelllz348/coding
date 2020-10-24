@@ -118,6 +118,44 @@ def merge2Lists(l1, l2):
 
 -----
 
+# 24. Swap Nodes in Pairs
+
+# Given a linked list, swap every two adjacent nodes and return its head.
+# You may not modify the values in the list's nodes. Only nodes itself may be changed.
+
+# Example: 1 (head) -> 2 -> 3 -> 4
+
+def swapPairs(self, head):
+    """
+    :type head: ListNode
+    :rtype: ListNode
+    """
+    # -1 (dummy) -> 1 -> 2 -> 3 -> 4
+    dummy = ListNode(-1)
+    dummy.next = head
+    # -1 (prev) -> 1 -> 2 -> 3 -> 4
+    prev = dummy
+
+    while head and head.next:
+        # nodes to be swapped
+        first = head # 1 (first) -> 2 -> 3 -> 4
+        second = head.next # 2 (second) -> 3 -> 4
+        # swap
+        prev.next = second # -1 (prev) -> 2 (prev.next = second) -> 3 -> 4
+        first.next = second.next # 1 (first) -> 3 (first.next = second.next) -> 4
+        second.next = first # 2 (second) -> 1 (second.next = first) -> 3 -> 4
+        # reinitialize the head and prev node for next swap
+        prev = first # 2 -> 1 (prev = first) -> 3 -> 4
+        head = first.next # 2 -> 1 (prev = first) -> 3 (head = first.next) -> 4
+
+    return dummy.next # -1 (dummy) -> 2 -> 1 -> 4 -> 3
+
+# Method: Linked List
+# Time: O(n)
+# Space: O(1)
+
+-----
+
 
 
 -----
