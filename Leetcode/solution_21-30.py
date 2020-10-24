@@ -34,7 +34,7 @@ def mergeTwoLists(l1, l2):
 # Time: O(L1 + L2) where L1 and L2 are the length of linked list 1 and 2
 # Space: O(L1 + L2)
 
------
+# -----
 
 # 22. Generate Parentheses **
 
@@ -76,7 +76,7 @@ n-th Catalan number:
 
 """
 
------
+# -----
 
 # 23. Merge k Sorted Lists
 
@@ -116,7 +116,7 @@ def merge2Lists(l1, l2):
 # Time: O(NlogK) where K is the number of linked lists and N is the upper bound of total number of nodes of two linked lists
 # Space: O(1)
 
------
+# -----
 
 # 24. Swap Nodes in Pairs
 
@@ -154,11 +154,11 @@ def swapPairs(self, head):
 # Time: O(n)
 # Space: O(1)
 
------
+# -----
 
 
 
------
+# -----
 
 # 26. Remove Duplicates from Sorted Array *
 
@@ -179,7 +179,7 @@ def removeDuplicates(nums):
             x = x + 1
     return x
     
------
+# -----
 
 # 27. Remove Element *
 
@@ -196,7 +196,7 @@ def removeElement(nums, val):
             i = i + 1
     return i
     
------
+# -----
 
 # 28. Implement strStr() *
 
@@ -220,5 +220,5 @@ def strStr(haystack, needle):
             return i
     return -1
     
------
+# -----
 
