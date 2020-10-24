@@ -30,7 +30,7 @@ def twoSum(nums, target):
 # Time: O(n)
 # Space: O(n)
 
------
+# -----
 
 # 2: Add Two Numbers **
 
@@ -82,7 +82,7 @@ def addTwoNumbers(l1, l2):
 # Time: O(max(m,n))
 # Space: O(max(m,n))
 
------
+# -----
 
 # 3: Longest Substring Without Repeating Characters **
 
@@ -114,7 +114,7 @@ def lengthOfLongestSubstring(s):
 # Space: O(k) where k is the size of the hash set; 
 #        worst case is then O(min(m,n)) where m is the size of the string s and n is the size of the hashset d
 
------
+# -----
 
 # 4: Median of Two Sorted Arrays ***
 
@@ -184,7 +184,7 @@ def findMedianSortedArrays(nums1, nums2):
 # Time: O(log(m+n))
 # Space: O(1)
 
------
+# -----
 
 # 5: Longest Palindromic Substring **
 
@@ -216,7 +216,7 @@ def expandAroundCenter(s, left, right):
 # Time: O(n^2)
 # Space: O(1)
 
------
+# -----
 
 # 6. ZigZag Conversion **
 
@@ -252,7 +252,7 @@ def zigZagConvert(s, numRows):
 # Time: O(n)
 # Space: O(n)
 
------
+# -----
 
 # 7: Reverse Integer *
 
@@ -280,7 +280,7 @@ def reverse(x):
 # Time: O(n)
 # Space: O(1)
 
------
+# -----
 
 # 8. String to Integer (atoi) **
 
@@ -329,7 +329,7 @@ def myAtoi(s):
     else:
         return max(sign * result, -2**31)
 
------
+# -----
 
 # 9. Palindrome Number *
 
@@ -352,7 +352,7 @@ def isPalindrome(x):
     else:
         return False
         
------
+# -----
 
 # 10. Regular Expression Matching ***
 
