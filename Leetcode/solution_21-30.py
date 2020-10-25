@@ -78,7 +78,7 @@ n-th Catalan number:
 
 # -----
 
-# 23. Merge k Sorted Lists
+# 23. Merge k Sorted Lists ***
 
 # You are given an array of k linked-lists lists, each linked-list is sorted in ascending order.
 # Merge all the linked-lists into one sorted linked-list and return it.
@@ -118,7 +118,7 @@ def merge2Lists(l1, l2):
 
 # -----
 
-# 24. Swap Nodes in Pairs
+# 24. Swap Nodes in Pairs **
 
 # Given a linked list, swap every two adjacent nodes and return its head.
 # You may not modify the values in the list's nodes. Only nodes itself may be changed.
@@ -156,7 +156,56 @@ def swapPairs(self, head):
 
 # -----
 
+# 25. Reverse Nodes in k-Group ***
 
+# Given a linked list, reverse the nodes of a linked list k at a time and return its modified list.
+# k is a positive integer and is less than or equal to the length of the linked list.
+# If the number of nodes is not a multiple of k then left-out nodes, in the end, should remain as it is.
+
+def reverseKGroup(self, head, k):
+    """
+    :type head: ListNode
+    :type k: int
+    :rtype: ListNode
+    """
+    count = 0
+    ptr = head
+
+    # reverse every k nodes in the linked list, so ptr makes jump of size k
+    while count < k and ptr:
+        ptr = ptr.next
+        count += 1
+
+    if count == k:
+        # reverse first k nodes of the linked list and return head of the reversed linked list
+        reversedHead = self.reverseLinkedList(head, k)
+        # recurse on the remaining nodes
+        # let the original head point to the reversed head which is returned by the recursion
+        head.next = self.reverseKGroup(ptr, k)
+        return reversedHead
+
+    return head
+
+# this function reverse the first k nodes of a given linked list (head)
+def reverseLinkedList(self, head, k):
+
+    new_head, ptr = None, head
+
+    while k:
+        # keep track of the next node to process in the original linked list
+        next_node = ptr.next
+        # insert the node pointed to by "ptr" at the beginning of the reversed list
+        ptr.next = new_head
+        new_head = ptr
+        # move on to the next node
+        ptr = next_node
+        k -= 1
+
+    return new_head
+
+# Method: Linked List
+# Time: O(N)
+# Space: O(N/k)
 
 # -----
 
