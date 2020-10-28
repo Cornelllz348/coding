@@ -48,6 +48,45 @@ def reverse(nums, start):
 
 # -----
 
+
+
+# -----
+
+# 33. Search in Rotated Sorted Array **
+
+# You are given an integer array nums sorted in ascending order, and an integer target.
+# Suppose that nums is rotated at some pivot unknown to you beforehand (i.e., [0,1,2,4,5,6,7] might become [4,5,6,7,0,1,2]).
+# If target is found in the array return its index, otherwise, return -1.
+
+def search(nums, target):
+    """
+    :type nums: List[int]
+    :type target: int
+    :rtype: int
+    """
+    left, right = 0, len(nums)-1
+    while left <= right:
+        mid = left + (right - left) // 2
+        if nums[mid] == target:
+            return mid
+        elif nums[mid] >= nums[left]: # pivot is mid or to the right of mid
+            if target >= nums[left] and target < nums[mid]:
+                right = mid - 1
+            else:
+                left = mid + 1
+        else: # pivot is to the left of mid
+            if target > nums[mid] and target <= nums[right]:
+                left = mid + 1
+            else:
+                right = mid - 1
+    return -1
+
+# Method: Binary Search
+# Time: O(logN)
+# Space: O(1)
+
+# -----
+
 # 35. Search Insert Position *
 
 # Given a sorted array of distinct integers and a target value, return the index if the target is found. 
