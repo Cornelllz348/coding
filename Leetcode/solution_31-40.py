@@ -289,4 +289,42 @@ def combinationSum(self, candidates, target):
 
 # -----
 
+# 40. Combination Sum II
 
+# Given a collection of candidate numbers (candidates) and a target number (target), 
+# find all unique combinations in candidates where the candidate numbers sum to target.
+# Each number in candidates may only be used once in the combination.
+# Note: The solution set must not contain duplicate combinations.
+
+def combinationSum2(candidates, target):
+    """
+    :type candidates: List[int]
+    :type target: int
+    :rtype: List[List[int]]
+    """
+    result = []
+
+    def backtrack(nums, start, path, result, remain):
+        if remain == 0:
+            result.append(path)
+            return
+
+        for i in range(start, len(nums)):
+            # deduplicate
+            if i > start and nums[i] == nums[i - 1]:
+                continue
+
+            if nums[i] > remain:
+                break
+
+            # i + 1 to start from the next number
+            backtrack(nums, i + 1, path + [nums[i]], result, remain - nums[i])
+
+    # sort candidates to more conveniently track duplicates
+    backtrack(sorted(candidates), 0, [], result, target)
+
+    return result
+
+# Method: DFS
+# Time: O(2^n)
+# Space: O(kn)
