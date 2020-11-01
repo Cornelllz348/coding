@@ -1,3 +1,33 @@
+# 252. Meeting Rooms I *
+
+# Given an array of meeting time intervals where intervals[i] = [starti, endi], 
+# determine if a person could attend all meetings.
+
+def canAttendMeetings(intervals):
+    """
+    :type intervals: List[List[int]]
+    :rtype: bool
+    """
+    result = True
+    if len(intervals) == 0:
+        return result
+    time = [False] * (10**6+1)
+    for i in intervals:
+        start = i[0]
+        end = i[1]
+        for j in range(start, end):
+            if time[j] == True:
+                return False
+            else:
+                time[j] = True
+    return result
+
+# Method: Brute Force
+# Time: O(n^2)
+# Space: O(1)
+
+# -----
+
 # 1510. Stone Game IV ***
 
 # Alice and Bob take turns playing a game, with Alice starting first.
