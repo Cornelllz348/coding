@@ -32,3 +32,27 @@ class Solution(object):
 
 # -----
 
+# 58. Length of Last Word *
+
+def lengthOfLastWord(s):
+    """
+    :type s: str
+    :rtype: int
+    """
+    result = 0
+    if not s or len(s) == 0:
+        return result
+    flag = False
+    for i in range(len(s)-1, -1, -1):
+        if s[i] != ' ':
+            result += 1
+            flag = True
+        elif flag == True and s[i] == ' ':
+            break
+    return result
+
+# Method: Array
+# Time: O(n)
+# Space: O(1)
+
+# -----
