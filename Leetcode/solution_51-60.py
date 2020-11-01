@@ -34,6 +34,10 @@ class Solution(object):
 
 # 58. Length of Last Word *
 
+# Given a string s consists of upper/lower-case alphabets and empty space characters ' ', 
+# return the length of last word (last word means the last appearing word if we loop from left to right) in the string.
+# If the last word does not exist, return 0.
+
 def lengthOfLastWord(s):
     """
     :type s: str
@@ -42,11 +46,14 @@ def lengthOfLastWord(s):
     result = 0
     if not s or len(s) == 0:
         return result
+    # flag means a non-space char has been encountered
     flag = False
     for i in range(len(s)-1, -1, -1):
+        # if char is not space, result += 1 and set flag to be true
         if s[i] != ' ':
             result += 1
             flag = True
+        # if flag is true and a space is encountered, break
         elif flag == True and s[i] == ' ':
             break
     return result
