@@ -62,3 +62,36 @@ def getDecimalValue(head):
 # Method: Bit Operation
 # Time: O(n)
 # Space: O(1)
+
+# -----
+
+# 1446. Consecutive Characters
+
+# Given a string s, the power of the string is the maximum length of a non-empty substring that 
+# contains only one unique character.
+
+# Return the power of the string.
+
+def maxPower(s):
+    """
+    :type s: str
+    :rtype: int
+    """
+    n = len(s)
+    result = count = 0
+    slow = fast = 0
+    while fast < n:
+        if s[slow] == s[fast]:
+            fast += 1
+            count += 1
+        else:
+            slow = fast
+            count = 0
+        result = max(result, count)
+    return result
+
+# Method: Two Pointers
+# Time: O(N)
+# Space: O(1)
+
+# -----
