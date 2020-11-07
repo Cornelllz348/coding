@@ -100,6 +100,34 @@ def maxPower(s):
 
 # -----
 
+# NOV 6: 1217. Minimum Cost to Move Chips to The Same Position
+
+# We have n chips, where the position of the ith chip is position[i].
+# We need to move all the chips to the same position. In one step, we can change the position of the ith chip from position[i] to:
+# position[i] + 2 or position[i] - 2 with cost = 0.
+# position[i] + 1 or position[i] - 1 with cost = 1.
+# Return the minimum cost needed to move all the chips to the same position.
+
+def minCostToMoveChips(position):
+    """
+    :type position: List[int]
+    :rtype: int
+    """
+    odd = 0
+    even = 0
+    for i in range(len(position)):
+        if position[i] % 2 == 0:
+            even += 1
+        else:
+            odd += 1
+    return min(odd, even)
+
+# Method: Math
+# Time: O(n)
+# Space: O(1)
+
+# -----
+
 # NOV 7: 1283. Find the Smallest Divisor Given a Threshold
 
 # Given an array of integers nums and an integer threshold, we will choose a positive integer divisor and divide all the array by it and sum the result of the division. 
@@ -107,7 +135,7 @@ def maxPower(s):
 # Each result of division is rounded to the nearest integer greater than or equal to that element. (For example: 7/3 = 3 and 10/2 = 5).
 # It is guaranteed that there will be an answer.
 
-def smallestDivisor(self, nums, threshold):
+def smallestDivisor(nums, threshold):
     """
     :type nums: List[int]
     :type threshold: int
