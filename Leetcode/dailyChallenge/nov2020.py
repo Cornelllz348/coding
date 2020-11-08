@@ -162,3 +162,37 @@ def smallestDivisor(nums, threshold):
 # Space: O(1)
 
 # -----
+
+# NOV 8: 1099. Two Sum Less Than K
+
+def twoSumLessThanK(A, K):
+    """
+    :type A: List[int]
+    :type K: int
+    :rtype: int
+    """
+    n = len(A)
+    if n == 1:
+        return -1
+    A.sort()
+    pivot = 0
+    result = -1
+    while pivot < len(A) and A[pivot] < K/2:
+        i = pivot + 1
+        j = n - 1
+        while i <= j:
+            mid = i + (j - i) // 2
+            if A[pivot] + A[mid] < K:
+                i = mid + 1
+                result = max(A[pivot] + A[mid], result)
+            else:
+                j = mid - 1
+        pivot += 1
+    return result
+
+# Method: Binary Search
+# Time: O(nlogn)
+# Space: O(1)
+
+# -----
+
