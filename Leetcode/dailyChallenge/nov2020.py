@@ -196,3 +196,33 @@ def twoSumLessThanK(A, K):
 
 # -----
 
+# NOV 9: 563. Binary Tree Tilt
+
+def findTilt(self, root):
+    """
+    :type root: TreeNode
+    :rtype: int
+    """
+    self.result = 0
+
+    def calcSum(root):
+        # base case
+        if not root:
+            return 0
+        # go down the left subtree
+        leftSum = calcSum(root.left)
+        # go down the right subtree
+        rightSum = calcSum(root.right)
+        # calculate the tilt
+        tilt = abs(leftSum - rightSum)
+        self.result += tilt
+        # return the total sum of the subtree
+        return leftSum + rightSum + root.val
+
+    calcSum(root)
+
+    return self.result
+
+# Method: Tree, DFS
+# Time: O(N) where N is the total number of nodes
+# Space: O(N)
