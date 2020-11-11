@@ -75,5 +75,9 @@ def multiply(num1, num2):
         string = ''.join(map(str, result))
     return string
 
+# Method: Math; Array
+# Time: O(l1 * l2)
+# Space: O(l1 * l2)
+
 # -----
 
