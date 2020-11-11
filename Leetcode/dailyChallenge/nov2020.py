@@ -69,7 +69,7 @@ def getDecimalValue(head):
 
 # -----
 
-# NOV 4: 1446. Consecutive Characters
+# NOV 4: 1446. Consecutive Characters *
 
 # Given a string s, the power of the string is the maximum length of a non-empty substring that 
 # contains only one unique character.
@@ -100,7 +100,7 @@ def maxPower(s):
 
 # -----
 
-# NOV 6: 1217. Minimum Cost to Move Chips to The Same Position
+# NOV 6: 1217. Minimum Cost to Move Chips to The Same Position *
 
 # We have n chips, where the position of the ith chip is position[i].
 # We need to move all the chips to the same position. In one step, we can change the position of the ith chip from position[i] to:
@@ -128,7 +128,7 @@ def minCostToMoveChips(position):
 
 # -----
 
-# NOV 7: 1283. Find the Smallest Divisor Given a Threshold
+# NOV 7: 1283. Find the Smallest Divisor Given a Threshold **
 
 # Given an array of integers nums and an integer threshold, we will choose a positive integer divisor and divide all the array by it and sum the result of the division. 
 # Find the smallest divisor such that the result mentioned above is less than or equal to threshold.
@@ -163,7 +163,7 @@ def smallestDivisor(nums, threshold):
 
 # -----
 
-# NOV 8: 1099. Two Sum Less Than K
+# NOV 8: 1099. Two Sum Less Than K *
 
 def twoSumLessThanK(A, K):
     """
@@ -196,7 +196,7 @@ def twoSumLessThanK(A, K):
 
 # -----
 
-# NOV 9: 563. Binary Tree Tilt
+# NOV 9: 563. Binary Tree Tilt *
 
 def findTilt(self, root):
     """
@@ -229,7 +229,7 @@ def findTilt(self, root):
 
 # -----
 
-# NOV 11: Flipping an Image
+# NOV 11: 832. Flipping an Image *
 
 def flipAndInvertImage(A):
     """
