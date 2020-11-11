@@ -226,3 +226,35 @@ def findTilt(self, root):
 # Method: Tree, DFS
 # Time: O(N) where N is the total number of nodes
 # Space: O(N)
+
+# -----
+
+# NOV 11: Flipping an Image
+
+def flipAndInvertImage(A):
+    """
+    :type A: List[List[int]]
+    :rtype: List[List[int]]
+    """
+    n = len(A)
+    m = len(A[0])
+    for i in range(n):
+        left = 0
+        right = m - 1
+        while left <= right:
+            self.swap(A[i], left, right)
+            left += 1
+            right -= 1
+        A[i] = map(lambda x: x * -1 + 1, A[i])
+    return A
+
+def swap(A, i, j):
+    tmp = A[i]
+    A[i] = A[j]
+    A[j] = tmp
+    
+# Method: Array
+# Time: O(n^2)
+# Space: O(1)
+    
+# -----
