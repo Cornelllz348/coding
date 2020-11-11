@@ -258,3 +258,30 @@ def swap(A, i, j):
 # Space: O(1)
     
 # -----
+
+# 593. Valid Square
+
+# Given the coordinates of four points in 2D space, return whether the four points could construct a square.
+# The coordinate (x,y) of a point is represented by an integer array with two integers.
+
+def validSquare(p1, p2, p3, p4):
+    """
+    :type p1: List[int]
+    :type p2: List[int]
+    :type p3: List[int]
+    :type p4: List[int]
+    :rtype: bool
+    """
+    d = [0] * 6
+    d[0] = (p1[0] - p2[0]) ** 2 + (p1[1] - p2[1]) ** 2
+    d[1] = (p1[0] - p3[0]) ** 2 + (p1[1] - p3[1]) ** 2
+    d[2] = (p1[0] - p4[0]) ** 2 + (p1[1] - p4[1]) ** 2
+    d[3] = (p2[0] - p3[0]) ** 2 + (p2[1] - p3[1]) ** 2
+    d[4] = (p2[0] - p4[0]) ** 2 + (p2[1] - p4[1]) ** 2
+    d[5] = (p3[0] - p4[0]) ** 2 + (p3[1] - p4[1]) ** 2
+    d.sort()
+    return d[0] > 0 and d[0] == d[1] and d[1] == d[2] and d[2] == d[3] and d[4] == d[5] and d[0] + d[2] == d[4]
+
+# Method: Math
+
+# -----
