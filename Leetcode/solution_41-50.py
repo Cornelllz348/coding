@@ -114,3 +114,31 @@ def rotate(matrix):
 
 # -----
 
+# 50. Pow(x, n)
+
+def myPow(x, n):
+"""
+:type x: float
+:type n: int
+:rtype: float
+"""
+N = n
+if N < 0:
+    x = 1/x
+    N = -N
+return self.helper(x, N)
+
+def helper(x, n):
+if n == 0:
+    return 1
+p = self.myPow(x, n // 2)
+if n % 2 == 0:
+    return p * p
+else:
+    return p * p * x
+
+# Method: Binary Search
+# Time: O(logn)
+# Space: O(logn)
+
+# -----
