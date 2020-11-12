@@ -1,4 +1,4 @@
-# 41. First Missing Positive
+# 41. First Missing Positive ***
 
 # Given an unsorted integer array nums, find the smallest missing positive integer.
 # Follow up: Could you implement an algorithm that runs in O(n) time and uses constant extra space.?
@@ -34,7 +34,7 @@ def firstMissingPositive(nums):
 
 # -----
 
-# 43. Multiply Strings
+# 43. Multiply Strings **
 
 # Given two non-negative integers num1 and num2 represented as strings, return the product of num1 and num2, also represented as a string.
 # Note: You must not use any built-in BigInteger library or convert the inputs to integer directly.
@@ -78,6 +78,39 @@ def multiply(num1, num2):
 # Method: Math; Array
 # Time: O(l1 * l2)
 # Space: O(l1 * l2)
+
+# -----
+
+# 48. Rotate Image **
+
+# You are given an n x n 2D matrix representing an image, rotate the image by 90 degrees (clockwise).
+# You have to rotate the image in-place, which means you have to modify the input 2D matrix directly. DO NOT allocate another 2D matrix and do the rotation.
+
+def rotate(matrix):
+    n = len(matrix)
+	// example: 6 x 6 matrix; rotating each 'x' would cover the entire matrix
+	// x  .  .  .  .  .
+	// x  x  .  .  .  .
+	// x  x  x  .  .  .
+	// x  x  .  .  .  .
+	// x  .  .  .  .  .
+	// .  .  .  .  .  .
+    for i in range(n // 2):
+        for j in range(i, n - i - 1):
+			// assign values of the four corners
+            a = matrix[j][i]
+            b = matrix[i][n-1-j]
+            c = matrix[n-1-j][n-i-1]
+            d = matrix[n-i-1][j]
+			// rotate
+            matrix[j][i] = d
+            matrix[i][n-1-j] = a
+            matrix[n-1-j][n-i-1] = b
+            matrix[n-i-1][j] = c
+
+# Method: Array
+# Time: O(n^2)
+# Space: O(1)
 
 # -----
 
