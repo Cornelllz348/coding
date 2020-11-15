@@ -29,4 +29,34 @@ def plusOne(digits):
 # Time: O(n)
 # Space: O(1)
 
-#-----
+# -----
+
+# 69. Sqrt(x) *
+
+# Given a non-negative integer x, compute and return the square root of x.
+# Since the return type is an integer, the decimal digits are truncated, and only the integer part of the result is returned.
+
+class Solution(object):
+    def mySqrt(self, x):
+        """
+        :type x: int
+        :rtype: int
+        """
+        left = 0
+        right = x // 2 + 1
+        while left < right - 1:
+            mid = left + (right - left) // 2
+            if mid * mid == x:
+                return mid
+            elif mid * mid > x:
+                right = mid
+            else:
+                left = mid
+        return x if x == 1 else left
+
+# Method: Binary Search
+# Time: O(logx)
+# Space: O(1)
+
+# -----
+
