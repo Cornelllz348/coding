@@ -5,12 +5,10 @@ class Solution(object):
         :type target: int
         :rtype: List[int]
         """
-        d = {}
-        r = []
+        dict = {}
         for i in range(len(nums)):
-            if d.get(target - nums[i]) == None:
-                d.update({nums[i]: i})
+            a = target - nums[i]
+            if a in dict:
+                return [dict.get(a), i]
             else:
-                r.append(d.get(target - nums[i]))
-                r.append(i)
-        return r
+                dict.update({nums[i]:i})
