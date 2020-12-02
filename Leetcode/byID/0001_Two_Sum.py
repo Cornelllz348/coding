@@ -1,16 +1,15 @@
 class Solution(object):
     def twoSum(self, nums, target):
         """
-        :type numbers: List[int]
+        :type nums: List[int]
         :type target: int
         :rtype: List[int]
         """
-        left, right = 0, len(nums) - 1
-        while left < right:
-            total = nums[left] + nums[right]
-            if total == target:
-                return [left + 1, right + 1]
-            elif total < target:
-                left += 1
+        dict = {}
+        for i in range(len(nums)):
+            a = target - nums[i]
+            if a in dict:
+                return [dict.get(a), i]
             else:
-                right -= 1
+                dict.update({nums[i]:i})
+        return [-1,-1]
