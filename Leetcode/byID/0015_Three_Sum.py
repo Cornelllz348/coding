@@ -4,26 +4,25 @@ class Solution(object):
         :type nums: List[int]
         :rtype: List[List[int]]
         """
-        res = []
+        n = len(nums)
         nums.sort()
-        for i in range(len(nums)-2):
-            # deduplication on a
-            if i > 0 and nums[i] == nums[i-1]:
-                continue
-            # use two pointers on the sub-array to the right of a
-            l, r = i + 1, len(nums) - 1
-            while l < r:
-                s = nums[i] + nums[l] + nums[r]
-                if s < 0:
-                    l += 1 
-                elif s > 0:
-                    r -= 1
-                else:
-                    res.append((nums[i], nums[l], nums[r]))
-                    # deduplication on b and c
-                    while l < r and nums[l] == nums[l+1]:
-                        l += 1
-                    while l < r and nums[r] == nums[r-1]:
-                        r -= 1
-                    l += 1; r -= 1
-        return res
+        result = []
+        for i in range(n - 2):
+            if nums[i] > 0:
+                break
+            if i == 0 or nums[i - 1] != nums[i]:
+                j = i + 1
+                k = n - 1
+                while j < k:
+                    total = nums[i] + nums[j] + nums[k]
+                    if total < 0:
+                        j += 1
+                    elif total > 0:
+                        k -= 1
+                    else:
+                        result.append([nums[i], nums[j], nums[k]])
+                        j += 1
+                        k -= 1
+                        while j < k and nums[j] == nums[j - 1]:
+                            j += 1
+        return result
