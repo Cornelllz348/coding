@@ -1,5 +1,7 @@
 package chapter0102;
 
+import edu.princeton.cs.algs4.StdOut;
+
 public class Exercise04
 
 {
