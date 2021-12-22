@@ -1,0 +1,5 @@
+In the weighted quick-union algorithm, suppose that we set id[find(p)] to q instead of id[find(q)].
+Would the resulting algorithm be correct?
+
+The algorithm would still be correct, but this would increase the tree height to at worst N, 
+so the performance guarantee would be invalid.
