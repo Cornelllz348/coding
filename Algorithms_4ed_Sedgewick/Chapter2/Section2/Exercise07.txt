@@ -1,0 +1,24 @@
+Exercise 7:
+
+Show that the number of compares used by mergesort is monotonically increasing
+i.e. C(n + 1) > C(n) for all n > 0
+
+Proof by induction:
+For n = 1: C(2) > C(1) as C(2) = 1, C(1) = 0
+
+For n > 1:
+We want to prove if C(n) > C(n - 1), then C(n + 1) > C(n).
+Without loss of generality, assume n is even.
+Since we have C(n) > C(n - 1), and:
+	C(n) = 2 * C(n/2) + n
+	C(n - 1) = C(n/2) + C((n-2)/2) + n - 1
+We have C(n/2) - C((n-2)/2) > 1
+
+We then need to show C(n + 1) > C(n), since:
+	C(n + 1) = C(n/2) + C((n+2)/2) + n + 1
+	C(n) = 2 * C(n/2) + n
+Showing C(n + 1) > C(n) is equivalent to showing C((n+2)/2) - C(n/2) > -1.
+
+As we have C(n/2) - C((n-2)/2) > 1, we must have C((n+2)/2) - C(n/2) > -1 if we substitute n with n+2.
+
+**
